@@ -54,3 +54,52 @@ Before you begin, ensure you have the following:
 1. Clone the repository:
    ```bash
    git clone https://github.com/your-username/inventory-management-system.git
+2. Navigate to the project directory and install the necessary dependencies:
+   ```bash
+   cd inventory-management-system
+   npm install
+3. Set up environment variables in the .env file:
+   ```bash
+   AWS_ACCESS_KEY_ID=your-access-key
+   AWS_SECRET_ACCESS_KEY=your-secret-key
+   POSTGRES_HOST=your-db-host
+   POSTGRES_USER=your-db-user
+   POSTGRES_PASSWORD=your-db-password
+   S3_BUCKET=your-s3-bucket-name
+4. Run the development server:
+   ```bash
+   npm run dev
+
+## Deployment
+
+To deploy the application on AWS:
+
+- 1. EC2 Setup: Set up an EC2 instance for the backend using AWS EC2.
+- 2. RDS Configuration: Configure RDS with PostgreSQL to host the database.
+- 3. S3 Bucket: Create and configure an S3 bucket for file storage.
+- 4. Use the AWS CLI or SDK to manage and deploy your application.
+
+## Usage
+
+- **Admin Dashboard**: Manage stock, update inventory, and view reports.
+- **Inventory Management**: Add new products, update stock levels, and track movements.
+- **Reports**: Generate customized reports based on date ranges or product categories.
+
+## Contributing
+
+We welcome contributions! Please follow these steps:
+
+- 1. Fork the repository.
+- 2. Create a new branch (git checkout -b feature-branch).
+- 3. Make your changes.
+- 4. Commit your changes (git commit -m 'Add new feature').
+- 5. Push to the branch (git push origin feature-branch).
+- 6. Open a pull request to the main branch.
+
+## License
+This project is licensed under the MIT License. See the LICENSE file for more details.
+
+### Contact
+For any inquiries, feel free to reach out:
+- **Ridho Hery Winarto**
+- **Email** : ridhoherywinarto@gmail.com
