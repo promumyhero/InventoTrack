@@ -33,9 +33,10 @@ const SidebarLink = ({
   const pathname = usePathname();
   const isActive =
     pathname === href || (pathname === "/" && href === "/dashboard");
-
+  {/* Menampilkan link sidebar */}
   return (
     <Link href={href}>
+      {/* Menampilkan icon dan label */}
       <div
         className={`cursor-pointer flex items-center ${
           isCollapsed ? "justify-center py-4" : "justify-start px-8 py-4"
@@ -60,19 +61,21 @@ const SidebarLink = ({
 };
 
 const Sidebar = () => {
+  // Mengambil fungsi dispatch dari store
   const dispatch = useAppDispatch();
+  // Mengambil nilai isSidebarCollapsed dari store
   const isSidebarCollapsed = useAppSelector(
     (state) => state.global.isSidebarCollapsed
   );
-
+  // Fungsi untuk mengubah nilai isSidebarCollapsed
   const toggleSidebar = () => {
     dispatch(setIsSidebarCollapsed(!isSidebarCollapsed));
   };
-
+  // Menentukan class untuk sidebar
   const sidebarClassNames = `fixed flex flex-col ${
     isSidebarCollapsed ? "w-0 md:w-16" : "w-72 md:w-64"
   } bg-white transition-all duration-300 overflow-hidden h-full shadow-md z-40`;
-
+  // Menampilkan sidebar
   return (
     <div className={sidebarClassNames}>
       {/* TOP LOGO */}
@@ -81,13 +84,10 @@ const Sidebar = () => {
           isSidebarCollapsed ? "px-5" : "px-8"
         }`}
       >
-        <Image
-          src="https://s3-inventorymanagement.s3.us-east-2.amazonaws.com/logo.png"
-          alt="edstock-logo"
-          width={27}
-          height={27}
-          className="rounded w-8"
-        />
+        {/* LOGO */}
+        <div>
+          Logo
+        </div>
         <h1
           className={`${
             isSidebarCollapsed ? "hidden" : "block"
