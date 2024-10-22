@@ -24,7 +24,7 @@ app.use((0, cors_1.default)());
 /* ROUTES */
 app.use("/dashboard", dashboardRoutes_1.default); // http://localhost:8000/dashboard
 /* SERVER */
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
