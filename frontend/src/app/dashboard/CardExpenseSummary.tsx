@@ -13,12 +13,18 @@ const colors = ["#00C49F", "#0088FE", "#FFBB28"];
 
 const CardExpenseSummary = () => {
   const { data: dashboardMetrics, isLoading } = useGetDashboardMetricsQuery();
-
+  {/*
+    * The following code snippet is used to get the expense summary
+    */}
   const expenseSummary = dashboardMetrics?.expenseSummary[0];
-
+  {/*
+    * The following code snippet is used to get the expense by category summary
+    */}
   const expenseByCategorySummary =
     dashboardMetrics?.expenseByCategorySummary || [];
-
+  {/*
+    * The following code snippet is used to calculate the total expenses and
+    */}
   const expenseSums = expenseByCategorySummary.reduce(
     (acc: ExpenseSums, item: ExpenseByCategorySummary) => {
       const category = item.category + " Expenses";
@@ -29,14 +35,18 @@ const CardExpenseSummary = () => {
     },
     {}
   );
-
+  {/*
+    * The following code snippet is used to format the total expenses
+    */}
   const expenseCategories = Object.entries(expenseSums).map(
     ([name, value]) => ({
       name,
       value,
     })
   );
-
+  {/*
+    * The following code snippet is used to calculate the total expenses
+    */}
   const totalExpenses = expenseCategories.reduce(
     (acc, category: { value: number }) => acc + category.value,
     0

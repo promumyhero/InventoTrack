@@ -16,15 +16,21 @@ const CardSalesSummary = () => {
   const salesData = data?.salesSummary || [];
 
   const [timeframe, setTimeframe] = useState("weekly");
-
+  {/*
+    * The following code snippet is used to filter the salesData array based on the selected timeframe.
+    */}
   const totalValueSum =
     salesData.reduce((acc, curr) => acc + curr.totalValue, 0) || 0;
-
+  {/*
+    * The following code snippet is used to calculate the average change percentage in the salesData array.
+    */}
   const averageChangePercentage =
     salesData.reduce((acc, curr, _, array) => {
       return acc + curr.changePercentage! / array.length;
     }, 0) || 0;
-
+  {/*
+    * The following code snippet is used to find the highest value in the salesData array.
+    */}
   const highestValueData = salesData.reduce((acc, curr) => {
     return acc.totalValue > curr.totalValue ? acc : curr;
   }, salesData[0] || {});
