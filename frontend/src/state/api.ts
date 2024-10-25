@@ -55,7 +55,9 @@ export interface User {
   name: string;
   email: string;
 }
-
+{/**
+  * The `createApi` function is used to create an API object that can be used to define queries and mutations.
+  */}
 export const api = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:8000" }),
   reducerPath: "api",
@@ -65,6 +67,9 @@ export const api = createApi({
       query: () => "/dashboard",
       providesTags: ["DashboardMetrics"],
     }),
+    /**
+     * The getProducts query is defined using the `build.query` method.
+     */
     getProducts: build.query<Product[], string | void>({
       query: (search) => ({
         url: "/products",
@@ -72,6 +77,9 @@ export const api = createApi({
       }),
       providesTags: ["Products"],
     }),
+    /**
+     * The createProduct mutation is defined using the `build.mutation` method.
+     */
     createProduct: build.mutation<Product, NewProduct>({
       query: (newProduct) => ({
         url: "/products",
@@ -80,10 +88,16 @@ export const api = createApi({
       }),
       invalidatesTags: ["Products"],
     }),
+    /**
+     * The getUsers query is defined using the `build.query` method.
+     */
     getUsers: build.query<User[], void>({
       query: () => "/users",
       providesTags: ["Users"],
     }),
+    /**
+     * The getExpensesByCategory query is defined using the `build.query` method.
+     */
     getExpensesByCategory: build.query<ExpenseByCategorySummary[], void>({
       query: () => "/expenses",
       providesTags: ["Expenses"],
