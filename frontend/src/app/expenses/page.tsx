@@ -25,6 +25,30 @@ type AggregatedData = {
   [category: string]: AggregatedDataItem;
 };
 
+/**
+ * A page that displays a pie chart of expenses grouped by category.
+ *
+ * The user can filter the expenses by category and date range.
+ *
+ * The pie chart displays the total amount of expenses for each category.
+ *
+ * The component uses the `useGetExpensesByCategoryQuery` hook to fetch the
+ * expenses data from the API.
+ *
+ * The component uses the `useMemo` hook to memoize the aggregated data and
+ * the `useState` hook to store the active index of the pie chart, the selected
+ * category, the start date, and the end date.
+ *
+ * The component renders a header, a filter section, and a pie chart section.
+ *
+ * The filter section contains a dropdown to select a category and two input
+ * fields to select a start and end date.
+ *
+ * The pie chart section contains a responsive container with a pie chart and
+ * a legend. The pie chart displays the total amount of expenses for each
+ * category. The legend displays the category names and the total amount of
+ * expenses for each category.
+ */
 const Expenses = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [selectedCategory, setSelectedCategory] = useState("All");
@@ -38,6 +62,15 @@ const Expenses = () => {
   } = useGetExpensesByCategoryQuery();
   const expenses = useMemo(() => expensesData ?? [], [expensesData]);
 
+  /**
+   * Takes a date string in the format "YYYY-MM-DD" and returns
+   * the same date in the format "YYYY-MM-DD" (i.e. the ISO date
+   * format, but without the time component).
+   *
+   * @param {string} dateString - The date string in the format "YYYY-MM-DD"
+   *
+   * @return {string} The date string in the format "YYYY-MM-DD"
+   */
   const parseDate = (dateString: string) => {
     const date = new Date(dateString);
     return date.toISOString().split("T")[0];
