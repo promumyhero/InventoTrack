@@ -1,9 +1,19 @@
-"use client"
+"use client";
 
-import { Cell, Legend, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
-import Header from "../component/Header";
-import { ExpenseByCategorySummary, useGetExpensesByCategoryQuery } from "@/state/api";
+import {
+  ExpenseByCategorySummary,
+  useGetExpensesByCategoryQuery,
+} from "@/state/api";
 import { useMemo, useState } from "react";
+import {
+  Cell,
+  Legend,
+  Pie,
+  PieChart,
+  ResponsiveContainer,
+  Tooltip,
+} from "recharts";
+import Header from "../component/Header";
 
 type AggregatedDataItem = {
   name: string;
@@ -16,24 +26,24 @@ type AggregatedData = {
 };
 
 const Expenses = () => {
-    const [activeIndex, setActiveIndex] = useState(0);
-    const [selectedCategory, setSelectedCategory] = useState("All");
-    const [startDate, setStartDate] = useState("");
-    const [endDate, setEndDate] = useState("");
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
 
-    const {
-        data: expensesData,
-        isLoading,
-        isError,
-      } = useGetExpensesByCategoryQuery();
-      const expenses = useMemo(() => expensesData ?? [], [expensesData]);
-    
-    const parseDate = (dateString: string) => {
-        const date = new Date(dateString);
-        return date.toISOString().split("T")[0];
-    }
+  const {
+    data: expensesData,
+    isLoading,
+    isError,
+  } = useGetExpensesByCategoryQuery();
+  const expenses = useMemo(() => expensesData ?? [], [expensesData]);
 
-    const aggregatedData: AggregatedDataItem[] = useMemo(() => {
+  const parseDate = (dateString: string) => {
+    const date = new Date(dateString);
+    return date.toISOString().split("T")[0];
+  };
+
+  const aggregatedData: AggregatedDataItem[] = useMemo(() => {
     const filtered: AggregatedData = expenses
       .filter((data: ExpenseByCategorySummary) => {
         const matchesCategory =
@@ -60,24 +70,23 @@ const Expenses = () => {
     return Object.values(filtered);
   }, [expenses, selectedCategory, startDate, endDate]);
 
+  const classNames = {
+    label: "block text-sm font-medium text-gray-700",
+    selectInput:
+      "mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md",
+  };
 
-    const classNames = {
-        label: "block text-sm font-medium text-gray-700",
-        selectInput:
-          "mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md",
-      };
-    
-      if (isLoading) {
-        return <div className="py-4">Loading...</div>;
-      }
-    
-      if (isError || !expensesData) {
-        return (
-          <div className="text-center text-red-500 py-4">
-            Failed to fetch expenses
-          </div>
-        );
-    }
+  if (isLoading) {
+    return <div className="py-4">Loading...</div>;
+  }
+
+  if (isError || !expensesData) {
+    return (
+      <div className="text-center text-red-500 py-4">
+        Failed to fetch expenses
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -175,6 +184,6 @@ const Expenses = () => {
       </div>
     </div>
   );
-}
+};
 
-export default Expenses
+export default Expenses;
