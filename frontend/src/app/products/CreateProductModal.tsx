@@ -9,6 +9,19 @@ type ProductFormData = {
   rating: number;
 };
 
+/**
+ * Komponen utama yang menampilkan modal untuk membuat produk baru.
+ * 
+ * The main component that displays a modal for creating a new product.
+ *
+ * @param {Object} props - The component props
+ * @param {boolean} props.isOpen - Boolean yang menentukan apakah modal ditampilkan atau tidak.
+ *                                 Boolean determining whether the modal is displayed or not.
+ * @param {() => void} props.onClose - Fungsi yang dipanggil ketika modal ditutup.
+ *                                     Function called when the modal is closed.
+ * @param {(formData: ProductFormData) => void} props.onCreate - Fungsi yang dipanggil dengan data produk baru ketika form disubmit.
+ *                                                               Function called with new product data when the form is submitted.
+ */
 type CreateProductModalProps = {
   isOpen: boolean;
   onClose: () => void;
@@ -20,6 +33,10 @@ const CreateProductModal = ({
   onClose,
   onCreate,
 }: CreateProductModalProps) => {
+   /**
+   * State untuk menyimpan data form.
+   * State to store form data.
+   */
   const [formData, setFormData] = useState({
     productId: v4(),
     name: "",
@@ -28,6 +45,13 @@ const CreateProductModal = ({
     rating: 0,
   });
 
+  /**
+   * Fungsi yang menangani perubahan input pada form.
+   * Function that handles input changes in the form.
+   *
+   * @param {ChangeEvent<HTMLInputElement>} e - Event object dari perubahan input.
+   *                                           Event object from input change.
+   */
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData({
@@ -38,7 +62,14 @@ const CreateProductModal = ({
           : value,
     });
   };
-
+  
+  /**
+   * Fungsi yang menangani pengiriman form.
+   * Function that handles form submission.
+   *
+   * @param {FormEvent<HTMLFormElement>} e - Event object dari pengiriman form.
+   *                                        Event object from form submission.
+   */
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     onCreate(formData);

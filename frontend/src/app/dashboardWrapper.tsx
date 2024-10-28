@@ -14,12 +14,12 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
 
   // Mengatur tema berdasarkan nilai isDarkMode
   useEffect(() => {
-      if (isDarkMode) {
-        document.documentElement.classList.add("dark");
-      } else {
-        document.documentElement.classList.add("light");
-      }
-    });
+    if (isDarkMode) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [isDarkMode]);
 
   return (
     <div
