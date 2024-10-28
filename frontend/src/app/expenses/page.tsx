@@ -76,6 +76,26 @@ const Expenses = () => {
     return date.toISOString().split("T")[0];
   };
 
+  /**
+ * Aggregates expense data based on selected category and date range.
+ * 
+ * @param {ExpenseByCategorySummary[]} expenses - Array of expense data
+ * @param {string} selectedCategory - Currently selected category filter
+ * @param {Date | null} startDate - Start date for filtering, if any
+ * @param {Date | null} endDate - End date for filtering, if any
+ * @returns {AggregatedDataItem[]} Array of aggregated data items
+ * 
+ * This function:
+ * 1. Filters expenses based on the selected category and date range
+ * 2. Aggregates expenses by category, summing up the amounts
+ * 3. Assigns a random color to each category
+ * 4. Returns an array of objects, each containing:
+ *    - name: Category name
+ *    - amount: Total amount for the category
+ *    - color: Randomly generated color for the category
+ * 
+ * The result is memoized using useMemo to optimize performance.
+ */
   const aggregatedData: AggregatedDataItem[] = useMemo(() => {
     const filtered: AggregatedData = expenses
       .filter((data: ExpenseByCategorySummary) => {
