@@ -12,6 +12,7 @@ import {
   SlidersHorizontal,
   User,
 } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
@@ -84,9 +85,13 @@ const Sidebar = () => {
         }`}
       >
         {/* LOGO */}
-        <div>
-          Logo
-        </div>
+        <Image 
+              src="https://s3-inventotrack.s3.ap-southeast-1.amazonaws.com/logo.png"
+              alt="InTrack Logo"
+              width={27}
+              height={27}
+              className="rounded w-8"
+            />
         <h1
           className={`${
             isSidebarCollapsed ? "hidden" : "block"
