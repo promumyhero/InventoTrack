@@ -53,16 +53,13 @@ Before you begin, ensure you have the following:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/inventory-management-system.git
+   git clone https://github.com/promumyhero/InventoTrack.git
 2. Navigate to the project directory and install the necessary dependencies:
    ```bash
    cd inventory-management-system
    npm install
 3. Set up environment variables in the .env file:
    ```bash
-   AWS_ACCESS_KEY_ID=your-access-key
-   AWS_SECRET_ACCESS_KEY=your-secret-key
-   POSTGRES_HOST=your-db-host
    POSTGRES_USER=your-db-user
    POSTGRES_PASSWORD=your-db-password
    S3_BUCKET=your-s3-bucket-name
