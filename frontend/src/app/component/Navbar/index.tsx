@@ -68,7 +68,7 @@ const Navbar = () => {
           <div className="flex items-center gap-3 cursor-pointer">
             <Image 
               src="https://s3-inventotrack.s3.ap-southeast-1.amazonaws.com/profile.jpg"
-              alt="profile"
+              alt="Profile"
               width={50}
               height={50}
               className="rounded-full h-full object-cover"
